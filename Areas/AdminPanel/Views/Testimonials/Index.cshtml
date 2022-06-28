@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Lawyer.Models.Testimonial>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var testimonial in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => testimonial.Fullname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => testimonial.Position)
+            </td>
+            <td>
+                <img src="~/img/@testimonial.Image" alt="testimonial_photo" />
+            </td>
+            <td>
+                <a asp-area="AdminPanel" asp-controller="Testimonials" asp-action="Edit" asp-route-id="@testimonial.Id">Edit</a> |
+                <a asp-area="AdminPanel" asp-controller="Testimonials" asp-action="Delete" asp-route-id="@testimonial.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
